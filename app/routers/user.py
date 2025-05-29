@@ -8,12 +8,14 @@ from fastapi import status
 from fastapi.responses import JSONResponse
 from fastapi_mail import FastMail, MessageSchema, ConnectionConfig
 from pydantic import EmailStr
-
+from dotenv import load_dotenv
+import os
+load_dotenv()  # <-- هذا يجب أن يكون في بداية الملف
 
 conf = ConnectionConfig(
-    MAIL_USERNAME="apifast065@gmail.com",
-    MAIL_PASSWORD="nelk wfsi aiud tbxq",
-    MAIL_FROM="apifast065@gmail.com",
+    MAIL_USERNAME=os.getenv("MAIL_USERNAME"),
+    MAIL_PASSWORD=os.getenv("MAIL_PASSWORD"),
+    MAIL_FROM=os.getenv("MAIL_FROM"),
     MAIL_PORT=587,
     MAIL_SERVER="smtp.gmail.com",
     MAIL_STARTTLS=True,     # بدل MAIL_TLS
